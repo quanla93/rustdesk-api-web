@@ -39,3 +39,27 @@ jobs:
           name: rustdesk-api-web-dist
           path: dist/
           if-no-files-found: error
+
+  trigger-api-build:
+    name: Trigger rustdesk-api build
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name != 'pull_request'
+
+    steps:
+      - name: Trigger rustdesk-api workflow
+        env:
+          GH_TOKEN: ${{ secrets.API_WORKFLOW_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::Missing API_WORKFLOW_TOKEN secret. Add a GitHub token with Actions write access to quanla93/rustdesk-api."
+            exit 1
+          fi
+
+          gh workflow run build.yml \
+            --repo quanla93/rustdesk-api \
+            --ref master \
+            -f WEBCLIENT_SOURCE_REPOSITORY=quanla93/rustdesk-api-web \
+            -f WEBCLIENT_SOURCE_REF=master \
+            -f SKIP_DOCKER_HUB=true \
+            -f SKIP_GHCR=false
