@@ -1,22 +1,24 @@
 <template>
-  <div class="oauth">
-    <el-card class="card">
-      <h2>{{ T('OauthBinding') }}</h2>
-      <el-form class="info" label-width="100px">
-        <el-form-item :label="T('Op')">
-          <div class="impt">{{ oauthInfo.op }}</div>
-        </el-form-item>
-        <el-form-item :label="T('ThirdName')">
-          <div class="impt">{{ oauthInfo.third_name }}</div>
-        </el-form-item>
-        <el-form-item label-width="0">
-          <el-button style="width: 100%" v-if="!resStatus" type="success" size="large" @click="toConfirm">{{ T('Bind') }}</el-button>
-        </el-form-item>
-        <el-form-item label-width="0">
-          <el-button style="width: 100%" size="large" @click="out">{{ T('Close') }}</el-button>
-        </el-form-item>
-      </el-form>
-      {{ T('OauthCloseNote') }}
+  <div class="auth-page">
+    <el-card class="auth-card">
+      <img src="@/assets/logo.png" alt="logo" class="auth-logo"/>
+      <h1 class="auth-title">{{ T('OauthBinding') }}</h1>
+      <p class="auth-subtitle">Confirm that this third-party identity should be bound to your account.</p>
+      <div class="auth-meta">
+        <div class="auth-meta-row">
+          <span class="auth-meta-label">{{ T('Op') }}</span>
+          <span class="auth-meta-value">{{ oauthInfo.op }}</span>
+        </div>
+        <div class="auth-meta-row">
+          <span class="auth-meta-label">{{ T('ThirdName') }}</span>
+          <span class="auth-meta-value">{{ oauthInfo.third_name }}</span>
+        </div>
+      </div>
+      <div class="auth-button-stack">
+        <el-button v-if="!resStatus" type="primary" size="large" @click="toConfirm">{{ T('Bind') }}</el-button>
+        <el-button size="large" @click="out">{{ T('Close') }}</el-button>
+      </div>
+      <p class="auth-note">{{ T('OauthCloseNote') }}</p>
     </el-card>
   </div>
 </template>
@@ -66,37 +68,3 @@
     window.close()
   }
 </script>
-
-<style scoped lang="scss">
-.oauth {
-  width: 100vw;
-  height: 100vh;
-  background-color: #2d3a4b;
-  padding-top: 25vh;
-  box-sizing: border-box;
-
-  .card {
-    max-width: 500px;
-    background-color: #283342;
-    color: #fff;
-    border: none;
-    margin: 0 auto;
-    text-align: center;
-
-    .info {
-      display: block;
-      line-height: 30px;
-      margin-bottom: 50px;
-
-      ::v-deep(.el-form-item__label) {
-        color: #fff;
-      }
-    }
-
-    .impt {
-      font-weight: bold;
-      font-size: 20px;
-    }
-  }
-}
-</style>
