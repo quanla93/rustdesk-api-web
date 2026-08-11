@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - 'v*.*.*'
   pull_request:
     branches:
       - master
@@ -56,10 +58,17 @@ jobs:
             exit 1
           fi
 
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            REF_NAME="${GITHUB_REF#refs/tags/}"
+          else
+            REF_NAME="master"
+          fi
+
           gh workflow run build.yml \
             --repo quanla93/rustdesk-api \
             --ref master \
             -f WEBCLIENT_SOURCE_REPOSITORY=quanla93/rustdesk-api-web \
-            -f WEBCLIENT_SOURCE_REF=master \
+            -f WEBCLIENT_SOURCE_REF=$REF_NAME \
+            -f EXPLICIT_RELEASE_TAG=$REF_NAME
             -f SKIP_DOCKER_HUB=true \
             -f SKIP_GHCR=false
