@@ -2,6 +2,7 @@
   <el-tag v-for="(t, i) in tags"
           :key="t.name"
           class="tag"
+          :class="{'is-active': t.active}"
           :closable="t.closeable"
           @close="close(t)"
           @click="toTag(t)"
@@ -72,12 +73,20 @@
 </script>
 
 <style lang="scss" scoped>
-
 .tag {
-  border-radius: 0;
+  margin-right: 8px;
+  border-radius: 999px;
   cursor: pointer;
+  font-weight: 650;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
 
-  &.active {
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  }
+
+  &.is-active {
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
   }
 }
 </style>

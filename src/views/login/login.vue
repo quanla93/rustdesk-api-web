@@ -1,38 +1,42 @@
 <template>
-  <div class="login-container">
-    <div class="login-card">
-      <img src="@/assets/logo.png" alt="logo" class="login-logo"/>
+  <div class="auth-page">
+    <div class="auth-card">
+      <img src="@/assets/logo.png" alt="logo" class="auth-logo"/>
+      <h1 class="auth-title">RustDesk API Admin</h1>
+      <p class="auth-subtitle">Sign in to manage users, devices, address books, and server access.</p>
 
-      <el-form v-if="!disablePwd" label-position="top" class="login-form">
+      <el-form v-if="!disablePwd" label-position="top" class="auth-form">
         <el-form-item :label="T('Username')">
-          <el-input v-model="form.username" type="username" class="login-input"></el-input>
+          <el-input v-model="form.username" type="username" class="auth-input"></el-input>
         </el-form-item>
 
         <el-form-item :label="T('Password')">
           <el-input v-model="form.password" type="password" @keyup.enter.native="login" show-password
-                    class="login-input"></el-input>
+                    class="auth-input"></el-input>
         </el-form-item>
         <el-form-item :label="T('Captcha')" v-if="captchaCode">
-          <el-input v-model="form.captcha" @keyup.enter.native="login"  class="login-input captcha-input">
+          <el-input v-model="form.captcha" @keyup.enter.native="login" class="auth-input captcha-input">
             <template #append>
               <img :src="captchaCode.b64" @click="loadCaptcha" class="captcha" alt="captcha"/>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click="login" type="primary" class="login-button">{{ T('Login') }}</el-button>
-          <el-button v-if="allowRegister" @click="register" class="login-button">{{ T('Register') }}</el-button>
+          <div class="auth-button-stack">
+            <el-button @click="login" type="primary">{{ T('Login') }}</el-button>
+            <el-button v-if="allowRegister" @click="register">{{ T('Register') }}</el-button>
+          </div>
         </el-form-item>
       </el-form>
 
-      <div class="divider" v-if="options.length > 0 && !disablePwd">
+      <div class="auth-divider" v-if="options.length > 0 && !disablePwd">
         <span>{{ T('or login in with') }}</span>
       </div>
 
-      <div class="oidc-options">
-        <div v-for="(option, index) in options" :key="index" class="oidc-option">
-          <el-button @click="handleOIDCLogin(option.name)" class="oidc-btn">
-            <img :src="getProviderImage(option.name)" alt="provider" class="oidc-icon"/>
+      <div class="auth-provider-list">
+        <div v-for="(option, index) in options" :key="index">
+          <el-button @click="handleOIDCLogin(option.name)" class="auth-provider-button">
+            <img :src="getProviderImage(option.name)" alt="provider" class="auth-provider-icon"/>
             <span>{{ T(option.name) }}</span>
           </el-button>
         </div>
@@ -169,129 +173,20 @@
 </script>
 
 <style scoped lang="scss">
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #2d3a4b;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.login-card {
-  width: 360px;
-  background-color: #283342;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.login-form {
-  margin-bottom: 20px;
-}
-
-.login-input {
-  width: 100%;
-  .captcha{
-    cursor: pointer;
-    width: 150px;
-  }
-}
-.captcha-input{
+.captcha-input {
   :deep(.el-input-group__append) {
-    border-radius: 5px;
+    border-radius: 0 var(--app-radius-sm) var(--app-radius-sm) 0;
     padding: 0;
     overflow: hidden;
-  }
-}
-
-.login-button {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
-  margin-left: 0;
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-  font-size: 14px;
-  color: #888;
-
-  &::before,
-  &::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background-color: #ddd;
+    border-color: rgba(148, 163, 184, 0.24);
+    background: transparent;
   }
 
-  &::before {
-    margin-right: 10px;
-  }
-
-  &::after {
-    margin-left: 10px;
-  }
-}
-
-.oidc-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.oidc-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  height: 50px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: black;
-  font-size: 14px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.oidc-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-}
-
-.login-logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  display: block;
-}
-
-.el-form-item {
-  ::v-deep(.el-form-item__label) {
-    color: #fff;
-  }
-
-  .el-input {
-    ::v-deep(.el-input__wrapper) {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: transparent;
-    }
-
-    ::v-deep(input) {
-      color: #fff;
-    }
+  .captcha {
+    cursor: pointer;
+    width: 150px;
+    height: 42px;
+    object-fit: cover;
   }
 }
 </style>
