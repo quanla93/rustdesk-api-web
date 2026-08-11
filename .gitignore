@@ -17,3 +17,7 @@ yarn-error.log*
 *.local
 
 yarn.lock
+
+.claude/
+.omc/
+.code-review-graph/
