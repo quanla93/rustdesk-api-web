@@ -25,39 +25,47 @@
         <el-form-item label="IP">
           <el-input v-model="listQuery.ip" clearable/>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-          <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
-          <el-popover :visible="showImport" placement="bottom" :width="600">
-            <el-upload
-                class="upload-demo"
-                drag
-                accept=".csv"
-                :before-upload="parseCsv"
-            >
-              <el-icon class="el-icon--upload">
-                <upload-filled/>
-              </el-icon>
-              <div class="el-upload__text">
-                {{ T('Drop file here or click to upload') }}
-              </div>
-              <template #tip>
-                <div class="el-upload__tip">
-                  {{ T('Please upload csv file') }} <br>
-                  {{ T('Columns') }}: <span style="font-weight: bold;font-size: 15px">id,cpu,hostname,memory,os,username,uuid,version,group_id</span>
-                  <br>
-                  <span>{{ T('You can reference export file') }}</span>
+        <el-form-item class="toolbar-actions">
+          <el-button-group class="action-group">
+            <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          </el-button-group>
+          <el-button-group class="action-group">
+            <el-button type="success" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+            <el-button type="default" :icon="Download" @click="toExport">{{ T('Export') }}</el-button>
+            <el-popover :visible="showImport" placement="bottom" :width="600">
+              <el-upload
+                  class="upload-demo"
+                  drag
+                  accept=".csv"
+                  :before-upload="parseCsv"
+              >
+                <el-icon class="el-icon--upload">
+                  <upload-filled/>
+                </el-icon>
+                <div class="el-upload__text">
+                  {{ T('Drop file here or click to upload') }}
                 </div>
+                <template #tip>
+                  <div class="el-upload__tip">
+                    {{ T('Please upload csv file') }} <br>
+                    {{ T('Columns') }}: <span style="font-weight: bold;font-size: 15px">id,cpu,hostname,memory,os,username,uuid,version,group_id</span>
+                    <br>
+                    <span>{{ T('You can reference export file') }}</span>
+                  </div>
+                </template>
+              </el-upload>
+              <div style="text-align: right; margin-top: 10px;">
+                <el-button @click="showImport=false">{{ T('Cancel') }}</el-button>
+              </div>
+              <template #reference>
+                <el-button @click="showImport=true" type="default" :icon="Upload">{{ T('Import') }}</el-button>
               </template>
-            </el-upload>
-            <el-button @click="showImport=false" type="primary">{{ T('Cancel') }}</el-button>
-            <template #reference>
-              <el-button @click="showImport=true" type="danger" :icon="ArrowDown">{{ T('Import') }}</el-button>
-            </template>
-          </el-popover>
-          <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>
-          <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAddToAB') }}</el-button>
+            </el-popover>
+          </el-button-group>
+          <el-button-group class="action-group">
+            <el-button type="primary" plain @click="toBatchAddToAB">{{ T('BatchAddToAB') }}</el-button>
+            <el-button type="danger" plain :icon="Delete" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>
+          </el-button-group>
         </el-form-item>
       </el-form>
     </el-card>
@@ -78,10 +86,11 @@
           <el-table-column v-if="c.name==='hostname'" prop="hostname" :label="T('Hostname')" align="center" width="120"/>
           <el-table-column v-if="c.name==='memory'" prop="memory" :label="T('Memory')" align="center" width="120"/>
           <el-table-column v-if="c.name==='os'" prop="os" :label="T('Os')" align="center" width="120" show-overflow-tooltip/>
-          <el-table-column v-if="c.name==='last_online_time'" prop="last_online_time" :label="T('LastOnlineTime')" align="center" min-width="120">
+          <el-table-column v-if="c.name==='last_online_time'" prop="last_online_time" :label="T('LastOnlineTime')" align="center" min-width="140">
             <template #default="{row}">
               <div class="last_oline_time">
-                <span> {{ row.last_online_time ? timeAgo(row.last_online_time * 1000) : '-' }}</span> <span class="dot" :class="{red: timeDis(row.last_online_time) >= 60, green: timeDis(row.last_online_time)< 60}"></span>
+                <span class="status-dot" :class="timeDis(row.last_online_time) >= 60 ? 'offline' : 'online'"></span>
+                <span> {{ row.last_online_time ? timeAgo(row.last_online_time * 1000) : '-' }}</span>
               </div>
             </template>
           </el-table-column>
@@ -100,13 +109,13 @@
           <el-table-column v-if="c.name==='updated_at'" prop="updated_at" :label="T('UpdatedAt')" align="center" width="150"/>
         </template>
 
-        <el-table-column :label="T('Actions')" align="center" width="500" class-name="table-actions" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="460" class-name="table-actions" fixed="right">
           <template #default="{row}">
-            <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
-            <el-button type="primary" @click="toAddressBook(row)">{{ T('AddToAddressBook') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="primary" plain @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" type="primary" plain @click="toWebClientLink(row)">Web Client</el-button>
+            <el-button type="primary" plain @click="toAddressBook(row)">{{ T('AddToAddressBook') }}</el-button>
+            <el-button type="default" @click="toEdit(row)">{{ T('Edit') }}</el-button>
+            <el-button type="danger" plain @click="del(row)">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -241,7 +250,7 @@
   import { loadAllUsers } from '@/global'
   import { useAppStore } from '@/store/app'
   import { connectByClient } from '@/utils/peer'
-  import { ArrowDown, ArrowUp, CopyDocument, Setting } from '@element-plus/icons'
+  import { ArrowDown, ArrowUp, CopyDocument, Setting, Search, Plus, Download, Upload, Delete } from '@element-plus/icons'
   import { handleClipboard } from '@/utils/clipboard'
   import { batchCreateFromPeers } from '@/api/address_book'
   import { useRepositories as useCollectionRepositories } from '@/views/address_book/collection'
@@ -573,25 +582,45 @@
   --el-select-width: 180px;
 }
 
-.last_oline_time {
+.toolbar-actions {
+  width: 100%;
+  margin-top: 6px !important;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.dot {
-  width: 6px;
-  height: 6px;
+.action-group {
+  display: flex;
+  gap: 8px;
+
+  .el-button {
+    margin: 0;
+  }
+}
+
+.last_oline_time {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
   display: block;
   border-radius: 50%;
-  margin-left: 10px;
+  flex-shrink: 0;
 
-  &.red {
-    background-color: red;
+  &.offline {
+    background-color: var(--el-color-danger);
+    box-shadow: 0 0 0 2px rgba(245, 108, 108, 0.2);
   }
 
-  &.green {
-    background-color: green;
+  &.online {
+    background-color: var(--el-color-success);
+    box-shadow: 0 0 0 2px rgba(103, 194, 58, 0.2);
   }
 }
 </style>
