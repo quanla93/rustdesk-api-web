@@ -2,9 +2,13 @@
   <div>
     <el-card class="list-query" shadow="hover">
       <el-form inline label-width="80px">
-        <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
+        <el-form-item class="toolbar-actions">
+          <el-button-group class="action-group">
+            <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          </el-button-group>
+          <el-button-group class="action-group">
+            <el-button type="success" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+          </el-button-group>
         </el-form-item>
       </el-form>
     </el-card>
@@ -18,10 +22,10 @@
         <el-table-column prop="pkce_method" :label="T('PkceMethod')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center">
+        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="220" fixed="right">
           <template #default="{row}">
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="default" @click="toEdit(row)">{{ T('Edit') }}</el-button>
+            <el-button type="danger" plain @click="del(row)">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -107,7 +111,7 @@
   import { T } from '@/utils/i18n'
   import { handleClipboard } from '@/utils/clipboard'
   import { useAppStore } from '@/store/app'
-  import { CopyDocument } from '@element-plus/icons'
+  import { CopyDocument, Search, Plus } from '@element-plus/icons-vue'
 
   const app = useAppStore()
 
@@ -254,5 +258,20 @@
 </script>
 
 <style scoped lang="scss">
+.toolbar-actions {
+  width: 100%;
+  margin-top: 6px !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
+.action-group {
+  display: flex;
+  gap: 8px;
+
+  .el-button {
+    margin: 0;
+  }
+}
 </style>

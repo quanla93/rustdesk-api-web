@@ -5,10 +5,14 @@
         <el-form-item :label="T('Username')">
           <el-input v-model="listQuery.username"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-          <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
+        <el-form-item class="toolbar-actions">
+          <el-button-group class="action-group">
+            <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          </el-button-group>
+          <el-button-group class="action-group">
+            <el-button type="success" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+            <el-button type="default" :icon="Download" @click="toExport">{{ T('Export') }}</el-button>
+          </el-button-group>
         </el-form-item>
       </el-form>
     </el-card>
@@ -36,13 +40,13 @@
         <el-table-column prop="remark" :label="T('Remark')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="650">
+        <el-table-column :label="T('Actions')" align="center" width="560" class-name="table-actions" fixed="right">
           <template #default="{row}">
-            <el-button @click="toTag(row)">{{ T('UserTags') }}</el-button>
-            <el-button @click="toAddressBook(row)">{{ T('UserAddressBook') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="warning" @click="changePass(row)">{{ T('ResetPassword') }}</el-button>
-            <el-button type="danger" @click="remove(row)">{{ T('Delete') }}</el-button>
+            <el-button type="primary" plain @click="toTag(row)">{{ T('UserTags') }}</el-button>
+            <el-button type="primary" plain @click="toAddressBook(row)">{{ T('UserAddressBook') }}</el-button>
+            <el-button type="default" @click="toEdit(row)">{{ T('Edit') }}</el-button>
+            <el-button type="warning" plain @click="changePass(row)">{{ T('ResetPassword') }}</el-button>
+            <el-button type="danger" plain @click="remove(row)">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -66,6 +70,7 @@
   import { update } from '@/api/user'
   import { ElMessageBox, ElMessage } from 'element-plus'
   import { onMounted, watch } from 'vue'
+  import { Search, Plus, Download } from '@element-plus/icons-vue'
   //列表
   const {
     listRes,
@@ -113,5 +118,21 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.toolbar-actions {
+  width: 100%;
+  margin-top: 6px !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.action-group {
+  display: flex;
+  gap: 8px;
+
+  .el-button {
+    margin: 0;
+  }
+}
 </style>
