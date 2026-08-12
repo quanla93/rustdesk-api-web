@@ -70,6 +70,6 @@ jobs:
             -f WEBCLIENT_SOURCE_REPOSITORY=quanla93/rustdesk-api-web \
             -f WEBCLIENT_SOURCE_REF=$REF_NAME \
             -f EXPLICIT_RELEASE_TAG=$REF_NAME \
-            -f TRIGGER_COMMIT_MSG="${{ github.event.head_commit.message }}"
+            -f TRIGGER_COMMIT_MSG="${{ github.event.head_commit.message }}" \
             -f SKIP_DOCKER_HUB=true \
             -f SKIP_GHCR=false
