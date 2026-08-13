@@ -1,6 +1,14 @@
 <template>
-  <div>
-    <el-card class="list-query" shadow="hover">
+  <div class="address-book-page console-data-page">
+    <div class="console-page-header">
+      <div>
+        <div class="console-breadcrumb">{{ T('AddressBook') }} / {{ T('Devices') }}</div>
+        <h2>{{ T('AddressBook') }}</h2>
+      </div>
+      <el-button type="primary" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+    </div>
+
+    <el-card class="list-query console-filter-card" shadow="hover">
       <el-form inline label-width="120px">
         <el-form-item :label="T('Owner')">
           <el-select v-model="listQuery.user_id" clearable @change="changeQueryUser">
@@ -28,12 +36,19 @@
           <el-input v-model="listQuery.hostname" clearable></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
+          <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
-    <el-card class="list-body" shadow="hover">
+    <el-card class="list-body console-table-card" shadow="hover">
+      <template #header>
+        <div class="console-card-header">
+          <span>{{ T('Devices') }}</span>
+          <div class="console-card-actions">
+            <el-button :icon="Refresh" circle @click="getList" />
+          </div>
+        </div>
+      </template>
       <!--      <el-tag type="danger" style="margin-bottom: 10px">不建议在此操作地址簿，可能会造成数据不同步</el-tag>-->
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
         <el-table-column prop="id" label="ID" align="center" width="200">
@@ -66,7 +81,7 @@
         <el-table-column prop="alias" :label="T('Alias')" align="center" width="150"/>
         <el-table-column prop="peer.version" :label="T('Version')" align="center" width="100"/>
         <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="500" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" min-width="260" fixed="right">
           <template #default="{row}">
             <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
@@ -187,6 +202,7 @@
   import { useAppStore } from '@/store/app'
   import { handleClipboard } from '@/utils/clipboard'
   import { CopyDocument } from '@element-plus/icons'
+  import { Plus, Refresh, Search } from '@element-plus/icons-vue'
   import PlatformIcons from '@/components/icons/platform.vue'
   import { loadAllUsers } from '@/global'
 

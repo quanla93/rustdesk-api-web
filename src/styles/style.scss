@@ -453,3 +453,61 @@ body {
     padding: 26px 20px;
   }
 }
+
+.console-data-page {
+  .console-page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 6px 0 18px;
+
+    h2 {
+      margin: 6px 0 0;
+      color: var(--app-text);
+      font-size: 22px;
+      font-weight: 750;
+    }
+  }
+
+  .console-breadcrumb {
+    color: var(--app-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .console-filter-card,
+  .console-table-card {
+    background: var(--app-surface) !important;
+  }
+
+  .console-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--app-text);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .console-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .device-identity {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 650;
+  }
+
+  .tag-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+}
