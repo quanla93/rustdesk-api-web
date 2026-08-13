@@ -31,13 +31,15 @@
       </el-tab-pane>
       <el-tab-pane :label="T('Advanced')" name="Advanced">
         <el-card class="list-query" shadow="hover">
-          <el-form inline label-width="80px">
-            <el-form-item>
-              <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-              <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-              <el-button type="success" :disabled="!canSendIdServerCmd" @click="showCmd({cmd:'',option:'',target:ID_TARGET})">{{ T('Send') }} To Id</el-button>
-              <el-button type="success" :disabled="!canSendRelayServerCmd" @click="showCmd({cmd:'',option:'',target:RELAY_TARGET})">{{ T('Send') }} To Relay</el-button>
-            </el-form-item>
+          <el-form inline label-width="80px" class="toolbar-actions">
+            <el-button-group class="action-group">
+              <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
+            </el-button-group>
+            <el-button-group class="action-group">
+              <el-button type="success" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+              <el-button type="primary" plain :icon="Position" :disabled="!canSendIdServerCmd" @click="showCmd({cmd:'',option:'',target:ID_TARGET})">{{ T('Send') }} To Id</el-button>
+              <el-button type="primary" plain :icon="Position" :disabled="!canSendRelayServerCmd" @click="showCmd({cmd:'',option:'',target:RELAY_TARGET})">{{ T('Send') }} To Relay</el-button>
+            </el-button-group>
           </el-form>
         </el-card>
         <el-card class="list-body" shadow="hover">
@@ -46,11 +48,11 @@
             <el-table-column prop="alias" label="alias" align="center"></el-table-column>
             <el-table-column prop="option" label="option" align="center"></el-table-column>
             <el-table-column prop="explain" label="explain" align="center"></el-table-column>
-            <el-table-column label="actions" align="center">
+            <el-table-column :label="T('Actions')" align="center" width="280" class-name="table-actions" fixed="right">
               <template #default="{row}">
-                <el-button type="success" :disabled="!canSendCmd(row.target)" @click="showCmd(row)">{{ T('Send') }}</el-button>
-                <el-button v-if="row.id" type="primary" @click="toUpdate(row)">{{ T('Edit') }}</el-button>
-                <el-button v-if="row.id" type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+                <el-button type="primary" plain :disabled="!canSendCmd(row.target)" @click="showCmd(row)">{{ T('Send') }}</el-button>
+                <el-button v-if="row.id" type="default" @click="toUpdate(row)">{{ T('Edit') }}</el-button>
+                <el-button v-if="row.id" type="danger" plain @click="del(row)">{{ T('Delete') }}</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -120,6 +122,7 @@
   import { onMounted, reactive, ref } from 'vue'
   import { T } from '@/utils/i18n'
   import { ElMessage, ElMessageBox } from 'element-plus'
+  import { Search, Plus, Position } from '@element-plus/icons-vue'
   import { ID_TARGET, RELAY_TARGET } from '@/views/rustdesk/options'
   import blocklist from '@/views/rustdesk/blocklist.vue'
   import blacklist from '@/views/rustdesk/blacklist.vue'
