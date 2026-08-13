@@ -1,21 +1,32 @@
 <template>
-  <div>
-    <el-card class="list-query" shadow="hover">
+  <div class="console-data-page">
+    <div class="console-page-header">
+      <div>
+        <div class="console-breadcrumb">{{ T('GroupManage') }} / {{ T('DeviceGroupManage') }}</div>
+        <h2>{{ T('DeviceGroupManage') }}</h2>
+      </div>
+      <el-button type="primary" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+    </div>
+
+    <el-card class="list-query console-filter-card" shadow="hover">
       <el-form inline label-width="80px">
         <!--        <el-form-item label="名称">
                   <el-input v-model="listQuery.name"></el-input>
                 </el-form-item>-->
         <el-form-item class="toolbar-actions">
-          <el-button-group class="action-group">
-            <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          </el-button-group>
-          <el-button-group class="action-group">
-            <el-button type="success" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
-          </el-button-group>
+          <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
-    <el-card class="list-body" shadow="hover">
+    <el-card class="list-body console-table-card" shadow="hover">
+      <template #header>
+        <div class="console-card-header">
+          <span>{{ T('DeviceGroupManage') }}</span>
+          <div class="console-card-actions">
+            <el-button :icon="Refresh" circle @click="getList" />
+          </div>
+        </div>
+      </template>
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
         <el-table-column prop="id" label="ID" align="center"></el-table-column>
         <el-table-column prop="name" :label="T('Name')" align="center"/>
@@ -57,7 +68,7 @@
   import { list, create, update, detail, remove } from '@/api/device_group'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { T } from '@/utils/i18n'
-  import { Search, Plus } from '@element-plus/icons-vue'
+  import { Search, Plus, Refresh } from '@element-plus/icons-vue'
 
   const listRes = reactive({
     list: [], total: 0, loading: false,
