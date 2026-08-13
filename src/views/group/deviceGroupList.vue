@@ -5,9 +5,13 @@
         <!--        <el-form-item label="名称">
                   <el-input v-model="listQuery.name"></el-input>
                 </el-form-item>-->
-        <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
+        <el-form-item class="toolbar-actions">
+          <el-button-group class="action-group">
+            <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          </el-button-group>
+          <el-button-group class="action-group">
+            <el-button type="success" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+          </el-button-group>
         </el-form-item>
       </el-form>
     </el-card>
@@ -17,10 +21,10 @@
         <el-table-column prop="name" :label="T('Name')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center">
+        <el-table-column :label="T('Actions')" align="center" width="220" class-name="table-actions" fixed="right">
           <template #default="{row}">
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="default" @click="toEdit(row)">{{ T('Edit') }}</el-button>
+            <el-button type="danger" plain @click="del(row)">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -53,6 +57,7 @@
   import { list, create, update, detail, remove } from '@/api/device_group'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { T } from '@/utils/i18n'
+  import { Search, Plus } from '@element-plus/icons-vue'
 
   const listRes = reactive({
     list: [], total: 0, loading: false,
