@@ -1,6 +1,14 @@
 <template>
-  <div>
-    <el-card class="list-query" shadow="hover">
+  <div class="console-data-page">
+    <div class="console-page-header">
+      <div>
+        <div class="console-breadcrumb">{{ T('AddressBook') }} / {{ T('Collection') }}</div>
+        <h2>{{ T('AddressBook') }}</h2>
+      </div>
+      <el-button type="primary" :icon="Plus" @click="toAdd">{{ T('Add') }}</el-button>
+    </div>
+
+    <el-card class="list-query console-filter-card" shadow="hover">
       <el-form inline label-width="80px">
         <el-form-item :label="T('Owner')">
           <el-select v-model="listQuery.user_id" clearable>
@@ -13,12 +21,19 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
+          <el-button type="primary" :icon="Search" @click="handlerQuery">{{ T('Filter') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
-    <el-card class="list-body" shadow="hover">
+    <el-card class="list-body console-table-card" shadow="hover">
+      <template #header>
+        <div class="console-card-header">
+          <span>{{ T('AddressBook') }}</span>
+          <div class="console-card-actions">
+            <el-button :icon="Refresh" circle @click="getList" />
+          </div>
+        </div>
+      </template>
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
         <el-table-column prop="id" label="ID" align="center"/>
         <el-table-column prop="user_id" :label="T('Owner')" align="center">
@@ -82,6 +97,7 @@
   import { onActivated, onMounted, watch } from 'vue'
   import Rule from '@/views/address_book/rule.vue'
   import { loadAllUsers } from '@/global'
+  import { Plus, Refresh, Search } from '@element-plus/icons-vue'
 
   const { allUsers, getAllUsers } = loadAllUsers()
   getAllUsers()
@@ -112,7 +128,6 @@
   const showRules = (row) => {
     clickRow.value = row
     rulesVisible.value = true
-    console.log('showRules')
   }
 
 </script>
