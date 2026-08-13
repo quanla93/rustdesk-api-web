@@ -1,26 +1,41 @@
 <template>
   <div class="auth-page">
     <div class="auth-card">
-      <img src="@/assets/logo.png" alt="logo" class="auth-logo"/>
-      <h1 class="auth-title">RustDesk API Admin</h1>
-      <p class="auth-subtitle">Sign in to manage users, devices, address books, and server access.</p>
+      <h1 class="auth-title">
+        <img src="@/assets/logo.png" alt="logo" />
+        RustDesk
+      </h1>
+      <p class="auth-subtitle">RustDesk Console</p>
 
       <el-form v-if="!disablePwd" label-position="top" class="auth-form">
-        <el-form-item :label="T('Username')">
-          <el-input v-model="form.username" type="username" class="auth-input"></el-input>
+        <el-form-item>
+          <el-input v-model="form.username" type="username" :placeholder="T('Username')" class="auth-input">
+            <template #prefix>
+              <el-icon><User /></el-icon>
+            </template>
+          </el-input>
         </el-form-item>
 
-        <el-form-item :label="T('Password')">
+        <el-form-item>
           <el-input v-model="form.password" type="password" @keyup.enter.native="login" show-password
-                    class="auth-input"></el-input>
+                    :placeholder="T('Password')" class="auth-input">
+            <template #prefix>
+              <el-icon><Lock /></el-icon>
+            </template>
+          </el-input>
         </el-form-item>
-        <el-form-item :label="T('Captcha')" v-if="captchaCode">
-          <el-input v-model="form.captcha" @keyup.enter.native="login" class="auth-input captcha-input">
+
+        <el-form-item v-if="captchaCode">
+          <el-input v-model="form.captcha" @keyup.enter.native="login" :placeholder="T('Captcha')" class="auth-input captcha-input">
+            <template #prefix>
+              <el-icon><Key /></el-icon>
+            </template>
             <template #append>
               <img :src="captchaCode.b64" @click="loadCaptcha" class="captcha" alt="captcha"/>
             </template>
           </el-input>
         </el-form-item>
+
         <el-form-item>
           <div class="auth-button-stack">
             <el-button @click="login" type="primary">{{ T('Login') }}</el-button>
@@ -41,6 +56,13 @@
           </el-button>
         </div>
       </div>
+
+      <div class="auth-footer">
+        <a href="https://rustdesk.com" target="_blank" rel="noopener noreferrer">
+          <el-icon style="vertical-align: middle; margin-right: 4px"><Monitor /></el-icon>
+          rustdesk.com
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +75,7 @@
   import { useRoute, useRouter } from 'vue-router'
   import { loginOptions, captcha } from '@/api/login'
   import { getCode, removeCode } from '@/utils/auth'
+  import { User, Lock, Key, Monitor } from '@element-plus/icons-vue'
 
   const oauthInfo = ref({})
   const userStore = useUserStore()
