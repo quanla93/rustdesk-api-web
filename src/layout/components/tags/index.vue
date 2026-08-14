@@ -1,15 +1,18 @@
 <template>
-  <el-tag v-for="(t, i) in tags"
-          :key="t.name"
-          class="tag"
-          :class="{'is-active': t.active}"
-          :closable="t.closeable"
-          @close="close(t)"
-          @click="toTag(t)"
-          :type="t.active?'primary':'info'"
-          :effect="t.active?'dark':'plain'">
-    {{ T(t.title) }}
-  </el-tag>
+  <div v-if="tags.length" class="route-tabs">
+    <span class="route-tabs__label">Open</span>
+    <el-tag v-for="t in tags"
+            :key="t.name"
+            class="tag"
+            :class="{'is-active': t.active}"
+            :closable="t.closeable"
+            @close="close(t)"
+            @click="toTag(t)"
+            :type="t.active?'primary':'info'"
+            :effect="t.active?'dark':'plain'">
+      {{ T(t.title) }}
+    </el-tag>
+  </div>
 </template>
 
 <script>
@@ -73,20 +76,44 @@
 </script>
 
 <style lang="scss" scoped>
+.route-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.route-tabs__label {
+  flex: none;
+  color: var(--app-text-soft);
+  font-size: 11px;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .tag {
-  margin-right: 8px;
+  margin-right: 0;
   border-radius: 999px;
   cursor: pointer;
   font-weight: 650;
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 6px 16px rgba(16, 24, 39, 0.08);
   }
 
   &.is-active {
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+    border-color: var(--app-primary) !important;
+    background: var(--app-primary) !important;
+    box-shadow: 0 8px 18px rgba(1, 97, 239, 0.18);
+  }
+}
+
+@media (max-width: 768px) {
+  .route-tabs__label {
+    display: none;
   }
 }
 </style>

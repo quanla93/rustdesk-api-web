@@ -534,5 +534,71 @@
   },
   "Remark": {
     "One": "Remark"
+  },
+  "MyWorkspace": {
+    "One": "My Workspace"
+  },
+  "Profile": {
+    "One": "Profile"
+  },
+  "MyDevices": {
+    "One": "My Devices"
+  },
+  "MyAddressBooks": {
+    "One": "My Address Books"
+  },
+  "MyAddressBookDevices": {
+    "One": "My Address Book Devices"
+  },
+  "MyTags": {
+    "One": "My Tags"
+  },
+  "SharedRecords": {
+    "One": "Shared Records"
+  },
+  "LoginLogs": {
+    "One": "Login Logs"
+  },
+  "Administration": {
+    "One": "Administration"
+  },
+  "Devices": {
+    "One": "Devices"
+  },
+  "Users": {
+    "One": "Users"
+  },
+  "UserGroups": {
+    "One": "User Groups"
+  },
+  "DeviceGroups": {
+    "One": "Device Groups"
+  },
+  "AddUser": {
+    "One": "Add User"
+  },
+  "EditUser": {
+    "One": "Edit User"
+  },
+  "SharedAddressBooks": {
+    "One": "Shared Address Books"
+  },
+  "AddressBookDevices": {
+    "One": "Address Book Devices"
+  },
+  "OAuthOIDC": {
+    "One": "OAuth / OIDC"
+  },
+  "ApiTokens": {
+    "One": "API Tokens"
+  },
+  "ConnectionLogs": {
+    "One": "Connection Logs"
+  },
+  "FileTransferLogs": {
+    "One": "File Transfer Logs"
+  },
+  "ServerControl": {
+    "One": "Server Control"
   }
 }

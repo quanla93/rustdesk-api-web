@@ -547,5 +547,71 @@
   },
   "Remark": {
     "One": "备注"
+  },
+  "MyWorkspace": {
+    "One": "我的工作区"
+  },
+  "Profile": {
+    "One": "个人资料"
+  },
+  "MyDevices": {
+    "One": "我的设备"
+  },
+  "MyAddressBooks": {
+    "One": "我的地址簿"
+  },
+  "MyAddressBookDevices": {
+    "One": "我的地址簿设备"
+  },
+  "MyTags": {
+    "One": "我的标签"
+  },
+  "SharedRecords": {
+    "One": "分享记录"
+  },
+  "LoginLogs": {
+    "One": "登录日志"
+  },
+  "Administration": {
+    "One": "管理"
+  },
+  "Devices": {
+    "One": "设备"
+  },
+  "Users": {
+    "One": "用户"
+  },
+  "UserGroups": {
+    "One": "用户组"
+  },
+  "DeviceGroups": {
+    "One": "设备组"
+  },
+  "AddUser": {
+    "One": "添加用户"
+  },
+  "EditUser": {
+    "One": "编辑用户"
+  },
+  "SharedAddressBooks": {
+    "One": "共享地址簿"
+  },
+  "AddressBookDevices": {
+    "One": "地址簿设备"
+  },
+  "OAuthOIDC": {
+    "One": "OAuth / OIDC"
+  },
+  "ApiTokens": {
+    "One": "API Token"
+  },
+  "ConnectionLogs": {
+    "One": "连接日志"
+  },
+  "FileTransferLogs": {
+    "One": "文件传输日志"
+  },
+  "ServerControl": {
+    "One": "服务器控制"
   }
 }

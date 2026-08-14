@@ -517,5 +517,71 @@
   },
   "Remark": {
     "One": "비고"
+  },
+  "MyWorkspace": {
+    "One": "내 작업 공간"
+  },
+  "Profile": {
+    "One": "프로필"
+  },
+  "MyDevices": {
+    "One": "내 장치"
+  },
+  "MyAddressBooks": {
+    "One": "내 주소록"
+  },
+  "MyAddressBookDevices": {
+    "One": "내 주소록 장치"
+  },
+  "MyTags": {
+    "One": "내 태그"
+  },
+  "SharedRecords": {
+    "One": "공유 기록"
+  },
+  "LoginLogs": {
+    "One": "로그인 로그"
+  },
+  "Administration": {
+    "One": "관리"
+  },
+  "Devices": {
+    "One": "장치"
+  },
+  "Users": {
+    "One": "사용자"
+  },
+  "UserGroups": {
+    "One": "사용자 그룹"
+  },
+  "DeviceGroups": {
+    "One": "장치 그룹"
+  },
+  "AddUser": {
+    "One": "사용자 추가"
+  },
+  "EditUser": {
+    "One": "사용자 편집"
+  },
+  "SharedAddressBooks": {
+    "One": "공유 주소록"
+  },
+  "AddressBookDevices": {
+    "One": "주소록 장치"
+  },
+  "OAuthOIDC": {
+    "One": "OAuth / OIDC"
+  },
+  "ApiTokens": {
+    "One": "API 토큰"
+  },
+  "ConnectionLogs": {
+    "One": "연결 로그"
+  },
+  "FileTransferLogs": {
+    "One": "파일 전송 로그"
+  },
+  "ServerControl": {
+    "One": "서버 제어"
   }
 }

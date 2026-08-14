@@ -3,7 +3,8 @@
     <div class="menu-item theme-toggle">
       <el-switch
           v-model="isDark"
-          style="--el-switch-on-color:#2563eb"
+          aria-label="Toggle dark theme"
+          style="--el-switch-on-color:var(--app-primary)"
       >
         <template #active-action>
           <el-icon>
@@ -18,7 +19,7 @@
       </el-switch>
     </div>
     <el-dropdown class="menu-item">
-      <div class="title icon-trigger">
+      <div class="title icon-trigger" aria-label="Change language">
         <i class="el-icon el-tooltip__trigger" style="font-size: 22px;">
           <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1.2em" height="1.2em">
             <path fill="currentColor"
@@ -34,7 +35,6 @@
     </el-dropdown>
     <el-dropdown class="menu-item">
       <div class="title user-trigger">
-        <!--        <el-image class="avatar" :src="user.avatar"></el-image>-->
         <span class="avatar-dot">{{ (user.username || 'U').slice(0, 1).toUpperCase() }}</span>
         <span class="nickname">{{ user.username }}</span>
         <el-icon>
@@ -80,7 +80,6 @@
     appStore.changeLang(v)
   }
   const isDark = useDark()
-  // const toggleDark = useToggle(isDark)
 </script>
 
 <style lang="scss" scoped>
@@ -96,24 +95,38 @@
     }
   }
 
+  .theme-toggle {
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 2px;
+  }
+
   .title {
-    min-height: 36px;
+    min-height: 38px;
     color: var(--app-header-text);
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--app-border);
     border-radius: 999px;
-    transition: background-color 0.18s ease, color 0.18s ease;
+    background: var(--app-surface);
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
     cursor: pointer;
 
     &:hover {
-      background: var(--app-surface-muted);
-      color: var(--el-color-primary);
+      border-color: var(--app-primary-border);
+      background: var(--app-primary-soft);
+      color: var(--app-primary);
+    }
+
+    &:focus-visible {
+      box-shadow: var(--app-focus-ring);
     }
   }
 
   .icon-trigger {
-    width: 38px;
+    width: 40px;
   }
 
   .user-trigger {
@@ -127,10 +140,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: var(--el-color-primary);
+    background: var(--app-primary);
     color: #fff;
     font-weight: 800;
     font-size: 12px;
+    box-shadow: 0 8px 18px rgba(1, 97, 239, 0.2);
   }
 
   .nickname {
@@ -140,6 +154,24 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     font-weight: 650;
+  }
+}
+
+@media (max-width: 768px) {
+  .setting {
+    gap: 6px;
+
+    .nickname {
+      display: none;
+    }
+
+    .title {
+      min-height: 34px;
+    }
+
+    .icon-trigger {
+      width: 36px;
+    }
   }
 }
 </style>
