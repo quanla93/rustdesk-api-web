@@ -1,61 +1,90 @@
 $basicBlack: #000000;
 $basicWhite: #ffffff;
 
-$primaryColor: #2563eb;
+$primaryColor: #0161ef;
 
 :root {
   color-scheme: light;
 
-  --app-bg: #f4f7fb;
+  // RustDesk-style product palette: clean light console with official blue accent.
+  --app-primary: #0161ef;
+  --app-primary-hover: #0154cf;
+  --app-primary-soft: #eef5ff;
+  --app-primary-border: #cfe2ff;
+
+  --app-bg: #f7f9fc;
+  --app-bg-soft: #eff4f6;
   --app-surface: #ffffff;
-  --app-surface-muted: #f8fafc;
-  --app-border: #e2e8f0;
-  --app-text: #172033;
+  --app-surface-raised: #ffffff;
+  --app-surface-muted: #f9fafb;
+  --app-border: #e5e7eb;
+  --app-border-strong: #d1d5db;
+  --app-text: #101010;
   --app-text-muted: #64748b;
   --app-text-soft: #94a3b8;
 
-  --app-sidebar-bg: #101827;
-  --app-sidebar-text: #cbd5e1;
-  --app-sidebar-muted: #94a3b8;
-  --app-sidebar-hover-bg: rgba(59, 130, 246, 0.12);
-  --app-sidebar-active-bg: rgba(37, 99, 235, 0.22);
-  --app-sidebar-active-text: #ffffff;
-  --app-header-bg: rgba(255, 255, 255, 0.92);
-  --app-header-text: #172033;
-  --app-header-border: rgba(226, 232, 240, 0.86);
+  --app-success: #16a34a;
+  --app-success-soft: #ecfdf3;
+  --app-warning: #f59e0b;
+  --app-warning-soft: #fffbeb;
+  --app-danger: #ef4444;
+  --app-danger-soft: #fef2f2;
+  --app-info: #0ea5e9;
+  --app-info-soft: #f0f9ff;
 
-  --auth-bg: #0f172a;
-  --auth-bg-accent: rgba(37, 99, 235, 0.32);
-  --auth-card-bg: rgba(15, 23, 42, 0.9);
-  --auth-card-border: rgba(148, 163, 184, 0.24);
-  --auth-text: #111827;
-  --auth-muted: #6b7280;
+  --app-sidebar-bg: #101827;
+  --app-sidebar-text: #d6deea;
+  --app-sidebar-muted: #95a3b8;
+  --app-sidebar-hover-bg: rgba(1, 97, 239, 0.14);
+  --app-sidebar-active-bg: rgba(1, 97, 239, 0.24);
+  --app-sidebar-active-text: #ffffff;
+  --app-header-bg: rgba(255, 255, 255, 0.94);
+  --app-header-text: var(--app-text);
+  --app-header-border: rgba(229, 231, 235, 0.9);
+
+  --auth-bg: #f7f9fc;
+  --auth-bg-accent: rgba(1, 97, 239, 0.16);
+  --auth-card-bg: #ffffff;
+  --auth-card-border: #e5e7eb;
+  --auth-text: var(--app-text);
+  --auth-muted: #64748b;
   --auth-input-bg: #ffffff;
 
+  --app-radius-xs: 6px;
   --app-radius-sm: 8px;
   --app-radius-md: 12px;
-  --app-radius-lg: 18px;
-  --app-radius-xl: 24px;
-  --app-shadow-card: 0 12px 32px rgba(15, 23, 42, 0.08);
-  --app-shadow-auth: 0 30px 90px rgba(2, 6, 23, 0.42);
+  --app-radius-lg: 16px;
+  --app-radius-xl: 22px;
+  --app-shadow-card: 0 10px 28px rgba(16, 24, 39, 0.08);
+  --app-shadow-card-hover: 0 16px 42px rgba(16, 24, 39, 0.12);
+  --app-shadow-auth: 0 24px 70px rgba(16, 24, 39, 0.16);
+  --app-focus-ring: 0 0 0 3px rgba(1, 97, 239, 0.18);
   --app-content-padding: 18px;
+  --app-table-header-bg: #f9fafb;
+  --app-table-row-hover: #f5f8ff;
 
   --basicBlack: var(--app-text);
   --basicWhite: #ffffff;
-  --primaryColor: #2563eb;
-  --tag-bg-color: #eef2ff;
+  --primaryColor: var(--app-primary);
+  --tag-bg-color: var(--app-primary-soft);
 
-  --el-color-primary: #2563eb;
+  --el-color-primary: var(--app-primary);
   --el-color-primary-light-3: #3b82f6;
   --el-color-primary-light-5: #60a5fa;
   --el-color-primary-light-7: #93c5fd;
   --el-color-primary-light-8: #bfdbfe;
-  --el-color-primary-light-9: #dbeafe;
-  --el-color-primary-dark-2: #1d4ed8;
+  --el-color-primary-light-9: var(--app-primary-soft);
+  --el-color-primary-dark-2: var(--app-primary-hover);
+  --el-color-success: var(--app-success);
+  --el-color-warning: var(--app-warning);
+  --el-color-danger: var(--app-danger);
+  --el-color-info: var(--app-info);
   --el-bg-color: var(--app-surface);
-  --el-bg-color-overlay: var(--app-surface);
+  --el-bg-color-overlay: var(--app-surface-raised);
+  --el-fill-color-light: var(--app-surface-muted);
   --el-border-color: var(--app-border);
-  --el-border-color-light: #edf2f7;
+  --el-border-color-light: #edf0f4;
+  --el-border-color-lighter: #f1f4f8;
   --el-border-radius-base: var(--app-radius-sm);
   --el-text-color-primary: var(--app-text);
   --el-text-color-regular: #334155;
@@ -65,41 +94,78 @@ $primaryColor: #2563eb;
 html.dark {
   color-scheme: dark;
 
-  --app-bg: #090a10;
-  --app-surface: #1e1e24;
-  --app-surface-muted: #18181d;
-  --app-border: #2c2c34;
-  --app-text: #e5edf7;
-  --app-text-muted: #8b929e;
-  --app-text-soft: #636976;
+  --app-primary: #3b82f6;
+  --app-primary-hover: #60a5fa;
+  --app-primary-soft: rgba(59, 130, 246, 0.16);
+  --app-primary-border: rgba(96, 165, 250, 0.28);
 
-  --app-sidebar-bg: #141419;
-  --app-sidebar-text: #8b929e;
-  --app-sidebar-muted: #636976;
-  --app-sidebar-hover-bg: rgba(255, 255, 255, 0.04);
-  --app-sidebar-active-bg: rgba(255, 255, 255, 0.06);
+  --app-bg: #090f1a;
+  --app-bg-soft: #0f172a;
+  --app-surface: #121a2a;
+  --app-surface-raised: #172033;
+  --app-surface-muted: #0f172a;
+  --app-border: #243047;
+  --app-border-strong: #334155;
+  --app-text: #f8fafc;
+  --app-text-muted: #a6b0c2;
+  --app-text-soft: #718096;
+
+  --app-success: #22c55e;
+  --app-success-soft: rgba(34, 197, 94, 0.16);
+  --app-warning: #f59e0b;
+  --app-warning-soft: rgba(245, 158, 11, 0.16);
+  --app-danger: #f87171;
+  --app-danger-soft: rgba(248, 113, 113, 0.16);
+  --app-info: #38bdf8;
+  --app-info-soft: rgba(56, 189, 248, 0.16);
+
+  --app-sidebar-bg: #0b1220;
+  --app-sidebar-text: #b8c4d8;
+  --app-sidebar-muted: #718096;
+  --app-sidebar-hover-bg: rgba(59, 130, 246, 0.12);
+  --app-sidebar-active-bg: rgba(59, 130, 246, 0.22);
   --app-sidebar-active-text: #ffffff;
-  --app-header-bg: #1e1e24;
-  --app-header-text: #f8fafc;
-  --app-header-border: #2c2c34;
+  --app-header-bg: rgba(18, 26, 42, 0.94);
+  --app-header-text: var(--app-text);
+  --app-header-border: rgba(36, 48, 71, 0.92);
 
-  --auth-bg: #090a10;
-  --auth-bg-accent: rgba(59, 130, 246, 0.15);
-  --auth-card-bg: #1e1e24;
-  --auth-card-border: #2c2c34;
-  --auth-text: #f8fafc;
-  --auth-muted: #8b929e;
-  --auth-input-bg: #141419;
+  --auth-bg: #090f1a;
+  --auth-bg-accent: rgba(59, 130, 246, 0.18);
+  --auth-card-bg: #121a2a;
+  --auth-card-border: #243047;
+  --auth-text: var(--app-text);
+  --auth-muted: var(--app-text-muted);
+  --auth-input-bg: #0f172a;
+
+  --app-shadow-card: 0 14px 36px rgba(0, 0, 0, 0.28);
+  --app-shadow-card-hover: 0 18px 48px rgba(0, 0, 0, 0.36);
+  --app-shadow-auth: 0 30px 90px rgba(0, 0, 0, 0.42);
+  --app-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.28);
+  --app-table-header-bg: #0f172a;
+  --app-table-row-hover: rgba(59, 130, 246, 0.1);
 
   --basicBlack: #ffffff;
-  --tag-bg-color: rgba(255, 255, 255, 0.06);
+  --tag-bg-color: rgba(59, 130, 246, 0.16);
 
+  --el-color-primary: var(--app-primary);
+  --el-color-primary-light-3: #60a5fa;
+  --el-color-primary-light-5: #93c5fd;
+  --el-color-primary-light-7: rgba(147, 197, 253, 0.52);
+  --el-color-primary-light-8: rgba(147, 197, 253, 0.32);
+  --el-color-primary-light-9: var(--app-primary-soft);
+  --el-color-primary-dark-2: var(--app-primary-hover);
+  --el-color-success: var(--app-success);
+  --el-color-warning: var(--app-warning);
+  --el-color-danger: var(--app-danger);
+  --el-color-info: var(--app-info);
   --el-bg-color: var(--app-surface);
-  --el-bg-color-overlay: #1e1e24;
+  --el-bg-color-overlay: var(--app-surface-raised);
+  --el-fill-color-light: var(--app-surface-muted);
   --el-border-color: var(--app-border);
-  --el-border-color-light: #2c2c34;
+  --el-border-color-light: #243047;
+  --el-border-color-lighter: #1d273a;
   --el-text-color-primary: var(--app-text);
-  --el-text-color-regular: #b4b9c1;
+  --el-text-color-regular: #d6deea;
   --el-text-color-secondary: var(--app-text-muted);
 }
 
