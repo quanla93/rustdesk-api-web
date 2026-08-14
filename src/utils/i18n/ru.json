@@ -534,6 +534,71 @@
   },
   "Remark": {
     "One": "Примечание"
+  },
+  "MyWorkspace": {
+    "One": "Мое рабочее место"
+  },
+  "Profile": {
+    "One": "Профиль"
+  },
+  "MyDevices": {
+    "One": "Мои устройства"
+  },
+  "MyAddressBooks": {
+    "One": "Мои адресные книги"
+  },
+  "MyAddressBookDevices": {
+    "One": "Устройства адресной книги"
+  },
+  "MyTags": {
+    "One": "Мои теги"
+  },
+  "SharedRecords": {
+    "One": "Общие записи"
+  },
+  "LoginLogs": {
+    "One": "Журналы входа"
+  },
+  "Administration": {
+    "One": "Администрирование"
+  },
+  "Devices": {
+    "One": "Устройства"
+  },
+  "Users": {
+    "One": "Пользователи"
+  },
+  "UserGroups": {
+    "One": "Группы пользователей"
+  },
+  "DeviceGroups": {
+    "One": "Группы устройств"
+  },
+  "AddUser": {
+    "One": "Добавить пользователя"
+  },
+  "EditUser": {
+    "One": "Редактировать пользователя"
+  },
+  "SharedAddressBooks": {
+    "One": "Общие адресные книги"
+  },
+  "AddressBookDevices": {
+    "One": "Устройства адресной книги"
+  },
+  "OAuthOIDC": {
+    "One": "OAuth / OIDC"
+  },
+  "ApiTokens": {
+    "One": "API-токены"
+  },
+  "ConnectionLogs": {
+    "One": "Журналы подключений"
+  },
+  "FileTransferLogs": {
+    "One": "Журналы передачи файлов"
+  },
+  "ServerControl": {
+    "One": "Управление сервером"
   }
 }
-

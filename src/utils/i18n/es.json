@@ -531,5 +531,71 @@
   },
   "Remark": {
     "One": "Remark"
+  },
+  "MyWorkspace": {
+    "One": "Mi espacio"
+  },
+  "Profile": {
+    "One": "Perfil"
+  },
+  "MyDevices": {
+    "One": "Mis dispositivos"
+  },
+  "MyAddressBooks": {
+    "One": "Mis libretas de direcciones"
+  },
+  "MyAddressBookDevices": {
+    "One": "Dispositivos de libreta"
+  },
+  "MyTags": {
+    "One": "Mis etiquetas"
+  },
+  "SharedRecords": {
+    "One": "Registros compartidos"
+  },
+  "LoginLogs": {
+    "One": "Registros de inicio"
+  },
+  "Administration": {
+    "One": "Administración"
+  },
+  "Devices": {
+    "One": "Dispositivos"
+  },
+  "Users": {
+    "One": "Usuarios"
+  },
+  "UserGroups": {
+    "One": "Grupos de usuarios"
+  },
+  "DeviceGroups": {
+    "One": "Grupos de dispositivos"
+  },
+  "AddUser": {
+    "One": "Agregar usuario"
+  },
+  "EditUser": {
+    "One": "Editar usuario"
+  },
+  "SharedAddressBooks": {
+    "One": "Libretas compartidas"
+  },
+  "AddressBookDevices": {
+    "One": "Dispositivos de libreta"
+  },
+  "OAuthOIDC": {
+    "One": "OAuth / OIDC"
+  },
+  "ApiTokens": {
+    "One": "Tokens API"
+  },
+  "ConnectionLogs": {
+    "One": "Registros de conexión"
+  },
+  "FileTransferLogs": {
+    "One": "Registros de transferencia"
+  },
+  "ServerControl": {
+    "One": "Control del servidor"
   }
 }

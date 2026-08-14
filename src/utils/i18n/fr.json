@@ -534,5 +534,71 @@
   },
   "Remark": {
     "One": "Remarque"
+  },
+  "MyWorkspace": {
+    "One": "Mon espace"
+  },
+  "Profile": {
+    "One": "Profil"
+  },
+  "MyDevices": {
+    "One": "Mes appareils"
+  },
+  "MyAddressBooks": {
+    "One": "Mes carnets d’adresses"
+  },
+  "MyAddressBookDevices": {
+    "One": "Appareils du carnet"
+  },
+  "MyTags": {
+    "One": "Mes tags"
+  },
+  "SharedRecords": {
+    "One": "Partages"
+  },
+  "LoginLogs": {
+    "One": "Journaux de connexion"
+  },
+  "Administration": {
+    "One": "Administration"
+  },
+  "Devices": {
+    "One": "Appareils"
+  },
+  "Users": {
+    "One": "Utilisateurs"
+  },
+  "UserGroups": {
+    "One": "Groupes utilisateurs"
+  },
+  "DeviceGroups": {
+    "One": "Groupes d’appareils"
+  },
+  "AddUser": {
+    "One": "Ajouter un utilisateur"
+  },
+  "EditUser": {
+    "One": "Modifier l’utilisateur"
+  },
+  "SharedAddressBooks": {
+    "One": "Carnets partagés"
+  },
+  "AddressBookDevices": {
+    "One": "Appareils du carnet"
+  },
+  "OAuthOIDC": {
+    "One": "OAuth / OIDC"
+  },
+  "ApiTokens": {
+    "One": "Jetons API"
+  },
+  "ConnectionLogs": {
+    "One": "Journaux de connexion"
+  },
+  "FileTransferLogs": {
+    "One": "Journaux de transfert"
+  },
+  "ServerControl": {
+    "One": "Contrôle serveur"
   }
 }

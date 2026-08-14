@@ -547,5 +547,71 @@
   },
   "Remark": {
     "One": "備註"
+  },
+  "MyWorkspace": {
+    "One": "我的工作區"
+  },
+  "Profile": {
+    "One": "個人資料"
+  },
+  "MyDevices": {
+    "One": "我的設備"
+  },
+  "MyAddressBooks": {
+    "One": "我的通訊錄"
+  },
+  "MyAddressBookDevices": {
+    "One": "我的通訊錄設備"
+  },
+  "MyTags": {
+    "One": "我的標籤"
+  },
+  "SharedRecords": {
+    "One": "分享記錄"
+  },
+  "LoginLogs": {
+    "One": "登入記錄"
+  },
+  "Administration": {
+    "One": "管理"
+  },
+  "Devices": {
+    "One": "設備"
+  },
+  "Users": {
+    "One": "使用者"
+  },
+  "UserGroups": {
+    "One": "使用者群組"
+  },
+  "DeviceGroups": {
+    "One": "設備群組"
+  },
+  "AddUser": {
+    "One": "新增使用者"
+  },
+  "EditUser": {
+    "One": "編輯使用者"
+  },
+  "SharedAddressBooks": {
+    "One": "共享通訊錄"
+  },
+  "AddressBookDevices": {
+    "One": "通訊錄設備"
+  },
+  "OAuthOIDC": {
+    "One": "OAuth / OIDC"
+  },
+  "ApiTokens": {
+    "One": "API Token"
+  },
+  "ConnectionLogs": {
+    "One": "連線記錄"
+  },
+  "FileTransferLogs": {
+    "One": "檔案傳輸記錄"
+  },
+  "ServerControl": {
+    "One": "伺服器控制"
   }
 }
